@@ -1,0 +1,27 @@
+{
+  "name": "loca-films",
+  "version": "1.0.0",
+  "description": "API REST Full, locadoura de filmes",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "server": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfrnks/loca-films.git"
+  },
+  "author": "dfrnks <douglasfrancardoso@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dfrnks/loca-films/issues"
+  },
+  "homepage": "https://github.com/dfrnks/loca-films#readme"
+}
