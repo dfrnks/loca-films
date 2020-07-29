@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const Cliente = require('./cliente')
-const Catalogo = require('./catalogo')
-const { db } = require('./db')
+const Cliente = require('./src/cliente')
+const Catalogo = require('./src/catalogo')
+const { db } = require('./src/db')
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
