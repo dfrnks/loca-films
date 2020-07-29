@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const Cliente = require('./src/cliente')
 const Catalogo = require('./src/catalogo')
-const { db } = require('./src/db')
+const { db } = require('./src/database');
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
