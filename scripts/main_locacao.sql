@@ -7,8 +7,8 @@ create table locacao
         references cliente,
     idcatalogo     varchar(50)
         references catalogo,
-    dthr_locacao   datetime    not null,
-    dthr_devolucao datetime
+    dthr_locacao   timestamp    not null,
+    dthr_devolucao timestamp
 );
 
 create unique index locacao_idlocacao_uindex
