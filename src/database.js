@@ -2,18 +2,21 @@ const sqlite3 = require('sqlite3').verbose();
 const { v4: uuidv4 } = require('uuid');
 
 const DBSOURCE = "db.sqlite"
+//const DBSOURCE = ":memory:"
 
 const db = () => {
     let db ;
 
     if (!db) {
-        //new sqlite3.Database(':memory:');
         db = new sqlite3.Database(DBSOURCE, (err) => {
             if (err) {
                 console.error(err.message)
             } else {
                 console.log('Connected to the SQLite database.')
 
+                // Feito dessa forma apenas para ser mais agil e
+                // para não precisa rodar scrip de criação de tabelas
+                // e inserção de dados
                 db.run(`create table catalogo
                 (
                     idcatalogo varchar(50)  not null constraint catalogo_pk primary key,
@@ -26,7 +29,6 @@ const db = () => {
                     if (err) {
                         // Table already created
                     }else{
-                        // Table just created, creating some rows
                         var insert = 'INSERT INTO catalogo (idcatalogo, idimdb, titulo, diretor, locado) VALUES (?,?,?,?,?)'
 
                         db.run('create unique index catalogo_idcatalogo_uindex on catalogo (idcatalogo);')
