@@ -12,27 +12,17 @@ app.get('/', function (req, res) {
 app.use(bodyParser.json());
 
 app.post("/cliente", (req, res) => {
-    let sql = `SELECT DISTINCT Name name FROM playlists
-           ORDER BY name`;
-
-    db().all(sql, [], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        rows.forEach((row) => {
-            console.log(row.name);
-        });
-    });
-
-    let cliente = new Cliente(
+    new Cliente(
         req.body.nome,
         req.body.email,
         req.body.senha,
-    )
-
-    res.json({
-        sucesso: cliente.save()
-    })
+    ).save()
+        .then(() => {
+            res.json({ sucesso: true })
+        })
+        .catch((error) => {
+            res.json({ mensagem: error.message, sucesso: false })
+        })
 })
 
 app.post("/login", (req, res) => {

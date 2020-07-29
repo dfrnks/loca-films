@@ -1,4 +1,8 @@
 const bcrypt = require('bcrypt');
+const { db } = require('./../db');
+const { v4: uuidv4 } = require('uuid');
+const email = require("email-validator");
+
 const saltRounds = 10;
 
 class Cliente {
@@ -11,9 +15,24 @@ class Cliente {
     }
 
     save() {
-        // Salva no banco aqui mesmo
+        return new Promise((resolve, reject) => {
+            if (!email.validate(this.email)) {
+                reject({
+                    message: "E-mail inválido"
+                })
+            } else {
+                db().run("INSERT INTO cliente(idcliente, nome, email, senha) values (?,?,?,?)", [
+                    uuidv4(), this.nome, this.email, this.hash
+                ], function (err) {
+                    if (err) {
+                        console.log(err.message);
+                        reject(err)
+                    }
 
-        return true;
+                    resolve(true)
+                });
+            }
+        })
     }
 
     static login(email, senha) {
