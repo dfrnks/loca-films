@@ -4,13 +4,16 @@
   "description": "API REST Full, locadoura de filmes",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
+    "jest": "^26.1.0",
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchAll",
     "dev": "nodemon app.js",
     "server": "node app.js"
   },
