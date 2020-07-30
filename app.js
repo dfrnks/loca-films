@@ -6,10 +6,6 @@ const Catalogo = require('./src/catalogo')
 const { db } = require('./src/database');
 const jwt = require('jsonwebtoken');
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-
 app.use(bodyParser.json());
 
 function verifyJWT(req, res, next){
@@ -59,6 +55,28 @@ app.post('/login', (req, res) => {
 app.post('/logout', verifyJWT, (req, res) => {
     Cliente
         .logout()
+        .then((success) => {
+            res.json(success)
+        })
+        .catch((error) => {
+            res.json({ mensagem: error.message, sucesso: false })
+        })
+})
+
+app.get('/catalogo', verifyJWT, (req, res) => {
+    if (req.query.titulo) {
+        Catalogo.get(req.query.titulo)
+            .then((success) => {
+                res.json(success)
+            })
+            .catch((error) => {
+                res.json({ mensagem: error.message, sucesso: false })
+            })
+
+        return;
+    }
+
+    Catalogo.getAll()
         .then((success) => {
             res.json(success)
         })

@@ -7,9 +7,9 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 class Cliente {
-    save(nome, email, senha) {
+    static save(nome, email, senha) {
         return new Promise((resolve, reject) => {
-            if (!emailValidator.validate(this.email)) {
+            if (!emailValidator.validate(email)) {
                 reject({
                     message: 'E-mail inválido'
                 })
@@ -43,8 +43,8 @@ class Cliente {
                     return;
                 }
 
-                if (!bcrypt.compareSync(senha, row.senha)) {
-                    reject({message: 'Senha incorreta!'})
+                if (!row || !bcrypt.compareSync(senha, row.senha)) {
+                    reject({message: 'Usuário ou senha incorreta!'})
                     return;
                 }
 
