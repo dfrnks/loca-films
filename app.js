@@ -22,7 +22,7 @@ function verifyJWT(req, res, next){
 
     jwt.verify(token[1],'2Y%uZsm/HzKG%4z-Vft,mZ+oh[I].of5', function(err, decoded) {
         if (err) {
-            return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+            return res.status(500).json({ auth: false, message: err.message });
         }
 
         req.idcliente = decoded.idcliente;

@@ -57,7 +57,7 @@ class Cliente {
                     },
                     '2Y%uZsm/HzKG%4z-Vft,mZ+oh[I].of5',
                     {
-                        expiresIn: 3600 // 1hr
+                        expiresIn: 300 // 5min
                     }
                 );
 
