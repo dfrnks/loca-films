@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 
-function verifyJWT(req, res, next){
+function checkJWT(req, res, next){
     let token = req.headers['authorization'];
     if (!token) {
         return res.status(401).json({ auth: false, message: 'No token provided.' });
@@ -52,7 +52,7 @@ app.post('/login', (req, res) => {
         })
 })
 
-app.post('/logout', verifyJWT, (req, res) => {
+app.post('/logout', checkJWT, (req, res) => {
     Cliente
         .logout()
         .then((success) => {
@@ -63,7 +63,7 @@ app.post('/logout', verifyJWT, (req, res) => {
         })
 })
 
-app.get('/catalogo', verifyJWT, (req, res) => {
+app.get('/catalogo', checkJWT, (req, res) => {
     if (req.query.titulo) {
         Catalogo.get(req.query.titulo)
             .then((success) => {
@@ -79,6 +79,17 @@ app.get('/catalogo', verifyJWT, (req, res) => {
     Catalogo.getAll()
         .then((success) => {
             res.json(success)
+        })
+        .catch((error) => {
+            res.json({ mensagem: error.message, sucesso: false })
+        })
+})
+
+app.put('/locar/:idimdb', checkJWT, (req, res) => {
+    Catalogo
+        .locar(req.idcliente, req.params.idimdb)
+        .then(() => {
+            res.json({ sucesso: true })
         })
         .catch((error) => {
             res.json({ mensagem: error.message, sucesso: false })
