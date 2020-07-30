@@ -13,27 +13,30 @@ app.get('/', function (req, res) {
 app.use(bodyParser.json());
 
 function verifyJWT(req, res, next){
-    var token = req.headers['authorization'];
-    if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
+    let token = req.headers['authorization'];
+    if (!token) {
+        return res.status(401).json({ auth: false, message: 'No token provided.' });
+    }
 
-    token = token.split(" ")
+    token = token.split(' ')
 
-    if (token[0] !== "Bearer") return res.status(401).json({ auth: false, message: 'Incorrect token type.' });
+    if (token[0] !== 'Bearer') {
+        return res.status(401).json({ auth: false, message: 'Incorrect token type.' });
+    }
 
     jwt.verify(token[1],'2Y%uZsm/HzKG%4z-Vft,mZ+oh[I].of5', function(err, decoded) {
-        if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+        if (err) {
+            return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+        }
 
         req.idcliente = decoded.idcliente;
         next();
     });
 }
 
-app.post("/cliente", (req, res) => {
-    new Cliente(
-        req.body.nome,
-        req.body.email,
-        req.body.senha,
-    ).save()
+app.post('/cliente', (req, res) => {
+    Cliente
+        .save(req.body.nome, req.body.email, req.body.senha)
         .then(() => {
             res.json({ sucesso: true })
         })
@@ -42,8 +45,9 @@ app.post("/cliente", (req, res) => {
         })
 })
 
-app.post("/login", (req, res) => {
-    Cliente.login(req.body.email, req.body.senha)
+app.post('/login', (req, res) => {
+    Cliente
+        .login(req.body.email, req.body.senha)
         .then((success) => {
             res.json(success)
         })
@@ -52,8 +56,9 @@ app.post("/login", (req, res) => {
         })
 })
 
-app.post("/logout", verifyJWT, (req, res) => {
-    Cliente.logout()
+app.post('/logout', verifyJWT, (req, res) => {
+    Cliente
+        .logout()
         .then((success) => {
             res.json(success)
         })
