@@ -139,7 +139,7 @@ class Catalogo{
         return new Promise((resolve, reject) => {
             // Procura as locacaos
             let sql = `
-            SELECT idimdb, titulo, diretor
+            SELECT idimdb, titulo, diretor, dthr_locacao
             FROM locacao l
                 INNER JOIN catalogo c on l.idcatalogo = c.idcatalogo
             WHERE idcliente = ? AND dthr_devolucao IS NULL 
