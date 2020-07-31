@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
-const { db } = require('../database');
-const { v4: uuidv4 } = require('uuid');
 const emailValidator = require('email-validator');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
+const { db } = require('../database');
 
 const saltRounds = 10;
 
@@ -64,7 +64,7 @@ class Cliente {
                 resolve({
                     'access_token': token,
                     'token_type': 'Bearer',
-                    'expires_in': 3600,
+                    'expires_in': 300,
                     'data' : {
                         'nome': row.nome,
                         'email': row.email
@@ -79,7 +79,7 @@ class Cliente {
             resolve({
                 'access_token': null,
                 'token_type': 'Bearer',
-                'expires_in': 3600,
+                'expires_in': 300,
                 'data' : {}
             })
         })

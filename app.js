@@ -1,23 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+const jwt = require('jsonwebtoken');
+
 const Cliente = require('./src/cliente')
 const Catalogo = require('./src/catalogo')
-const { db } = require('./src/database');
-const jwt = require('jsonwebtoken');
+
+const app = express();
 
 app.use(bodyParser.json());
 
 function checkJWT(req, res, next){
     let token = req.headers['authorization'];
     if (!token) {
-        return res.status(401).json({ auth: false, message: 'No token provided.' });
+        return res.status(401).json({ auth: false, message: 'Nenhum token informado.' });
     }
 
     token = token.split(' ')
 
     if (token[0] !== 'Bearer') {
-        return res.status(401).json({ auth: false, message: 'Incorrect token type.' });
+        return res.status(401).json({ auth: false, message: 'Tipo de token inválido.' });
     }
 
     jwt.verify(token[1],'2Y%uZsm/HzKG%4z-Vft,mZ+oh[I].of5', function(err, decoded) {
@@ -119,5 +120,5 @@ app.get('/locados', checkJWT, (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log('Example app listening on port 3000!');
+    console.log('Loca Films started listening on port 3000!');
 });

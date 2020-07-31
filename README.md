@@ -17,4 +17,8 @@ Para Iniciar o serviço rode:
     
 O Banco de dados foi modelo utilizando o SQLite, quando conectar no 
 banco a primeira vez irá criar toda a estrutura e inserir um catálogo 
-de filmes para locação
+de filmes para locação. 
+
+Quando criar o cliente a primeira vez, poderá ser 
+que as tabelas ainda não existem, tente novamente que então todas as tabelas 
+estaram criadas.

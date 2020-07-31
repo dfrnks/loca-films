@@ -12,8 +12,6 @@ const db = () => {
             if (err) {
                 console.error(err.message)
             } else {
-                console.log('Connected to the SQLite database.')
-
                 // Feito dessa forma apenas para ser mais agil e
                 // para não precisa rodar scrip de criação de tabelas
                 // e inserção de dados
@@ -34,18 +32,18 @@ const db = () => {
                         db.run('create unique index catalogo_idcatalogo_uindex on catalogo (idcatalogo);')
 
                         db.run(insert, [uuidv4(), 'tt0111161', 'Um Sonho de Liberdade', 'Frank Darabont', false])
-                        db.run(insert, [uuidv4(), 'tt0068646', 'O Poderoso Chefão', 'Francis Ford Coppola', false])
-                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
-                        db.run(insert, [uuidv4(), 'tt0050083', '12 Homens e uma Sentença', 'Sidney Lumet', false])
-                        db.run(insert, [uuidv4(), 'tt0120737', 'O Senhor dos Anéis: A Sociedade do Anel', 'Peter Jackson', false])
-                        db.run(insert, [uuidv4(), 'tt0120737', 'O Senhor dos Anéis: A Sociedade do Anel', 'Peter Jackson', false])
-                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
-                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
-                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
-                        db.run(insert, [uuidv4(), 'tt0068646', 'O Poderoso Chefão', 'Francis Ford Coppola', false])
                         db.run(insert, [uuidv4(), 'tt0111161', 'Um Sonho de Liberdade', 'Frank Darabont', false])
+                        db.run(insert, [uuidv4(), 'tt0068646', 'O Poderoso Chefão', 'Francis Ford Coppola', false])
+                        db.run(insert, [uuidv4(), 'tt0068646', 'O Poderoso Chefão', 'Francis Ford Coppola', false])
+                        db.run(insert, [uuidv4(), 'tt0120737', 'O Senhor dos Anéis: A Sociedade do Anel', 'Peter Jackson', false])
+                        db.run(insert, [uuidv4(), 'tt0050083', '12 Homens e uma Sentença', 'Sidney Lumet', false])
                         db.run(insert, [uuidv4(), 'tt0050083', '12 Homens e uma Sentença', 'Sidney Lumet', false])
                         db.run(insert, [uuidv4(), 'tt0120737', 'O Senhor dos Anéis: A Sociedade do Anel', 'Peter Jackson', false])
+                        db.run(insert, [uuidv4(), 'tt0120737', 'O Senhor dos Anéis: A Sociedade do Anel', 'Peter Jackson', false])
+                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
+                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
+                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
+                        db.run(insert, [uuidv4(), 'tt0468569', 'Batman: O Cavaleiro das Trevas', 'Christopher Nolan', false])
                     }
                 });
 
@@ -59,7 +57,6 @@ const db = () => {
                 `, (err) => {
                     if (err) {
                         // Table already created
-                        //console.log(err)
                     } else {
                         db.run('create unique index cliente_email_uindex on cliente (email);')
                         db.run('create unique index cliente_idcliente_uindex on cliente (idcliente);')
@@ -77,7 +74,6 @@ const db = () => {
                 `, (err) => {
                     if (err) {
                         // Table already created
-                        //console.log(err)
                     } else {
                         db.run('create unique index locacao_idlocacao_uindex on locacao (idlocacao);')
                     }

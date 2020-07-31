@@ -54,7 +54,7 @@ class Catalogo{
                     return;
                 }
 
-                // Aloca o filme para o cliente
+                // loca o filme para o cliente
                 let update = 'UPDATE catalogo set locado = 1 WHERE idcatalogo = ?'
 
                 db().run(update, [ row.idcatalogo ], function (err) {
