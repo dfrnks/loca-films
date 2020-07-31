@@ -96,6 +96,28 @@ app.put('/locar/:idimdb', checkJWT, (req, res) => {
         })
 })
 
+app.delete('/devolver/:idimdb', checkJWT, (req, res) => {
+    Catalogo
+        .devolver(req.idcliente, req.params.idimdb)
+        .then(() => {
+            res.json({ sucesso: true })
+        })
+        .catch((error) => {
+            res.json({ mensagem: error.message, sucesso: false })
+        })
+})
+
+app.get('/locados', checkJWT, (req, res) => {
+    Catalogo
+        .locados(req.idcliente)
+        .then((success) => {
+            res.json(success)
+        })
+        .catch((error) => {
+            res.json({ mensagem: error.message, sucesso: false })
+        })
+})
+
 app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
 });
