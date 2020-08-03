@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const Cliente = require('./src/cliente')
 const Catalogo = require('./src/catalogo')
 
+const { sync } = require('./src/database');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -120,5 +122,8 @@ app.get('/locados', checkJWT, (req, res) => {
 })
 
 app.listen(3000, () => {
+    // Sincronizando o banco de dados
+    sync()
+
     console.log('Loca Films started listening on port 3000!');
 });
