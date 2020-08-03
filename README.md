@@ -22,3 +22,5 @@ de filmes para locação.
 Quando criar o cliente a primeira vez, poderá ser 
 que as tabelas ainda não existem, tente novamente que então todas as tabelas 
 estaram criadas.
+
+[Outro Projeto NodeJs](https://github.com/dfrnks/nodejs-bchain)
